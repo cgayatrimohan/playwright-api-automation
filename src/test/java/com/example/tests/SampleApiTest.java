@@ -18,6 +18,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SampleApiTest extends BaseTest {
 
     @Test
+    void healthReturnsUp() {
+        APIResponse response = request.get("/health");
+
+        assertEquals(200, response.status());
+
+        JsonObject body = new Gson().fromJson(response.text(), JsonObject.class);
+        assertEquals("UP", body.get("status").getAsString());
+    }
+
+    @Test
     void getPostReturnsExpectedBody() {
         APIResponse response = request.get("/posts/1");
 
