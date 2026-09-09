@@ -9,15 +9,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Sample test demonstrating usage of {@link BaseTest}. Exercises a public
- * test API since no local server is wired up yet — swap the URL for the
- * real base URL once one is available.
+ * Sample test demonstrating usage of {@link BaseTest}. Runs against the
+ * in-process {@code DummyServer} that {@link BaseTest} starts by default.
  */
 class SampleApiTest extends BaseTest {
 
     @Test
     void getPostReturnsExpectedBody() {
-        APIResponse response = request.get("https://jsonplaceholder.typicode.com/posts/1");
+        APIResponse response = request.get("/posts/1");
 
         assertEquals(200, response.status());
 
